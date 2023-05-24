@@ -17,9 +17,8 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
       - name: Deploy to server
-        uses: appleboy/ssh-action@master
+        uses: easingthemes/ssh-deploy@v2.2.1
         with:
-        
           ssh-password: ${{ secrets.SERVER_PASS }}
           server-ip: ${{ secrets[format('SERVER_IP_{0}', matrix.server)] }}
           server-port: 22
