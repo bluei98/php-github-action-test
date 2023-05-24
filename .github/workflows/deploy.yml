@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
       - name: Deploy to server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets[format('SERVER_IP_{0}', matrix.server)] }}
           username: ${{ secrets.SERVER_USER }}
