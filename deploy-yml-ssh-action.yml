@@ -17,11 +17,12 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
       - name: Deploy to server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.10
         with:
-        
-          ssh-password: ${{ secrets.SERVER_PASS }}
-          server-ip: ${{ secrets[format('SERVER_IP_{0}', matrix.server)] }}
-          server-port: 22
-          server-username: ${{ secrets.SERVER_USER }}
-          remote-dir: /var/www/html/githubaction
+          host: ${{ secrets.SERVER_IP_1 }}
+          port: 22
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASS }}
+          script: |
+            whoami
+            ls /var/www/html/githubaction
