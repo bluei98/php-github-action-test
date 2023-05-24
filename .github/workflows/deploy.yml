@@ -17,10 +17,10 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --optimize-autoloader
       - name: Deploy to server
-        uses: easingthemes/ssh-deploy@v2.2.1
+        uses: appleboy/ssh-action@master
         with:
-          ssh-password: ${{ secrets.SSH_PASS }}
-          server-ip: ${{ secrets[format('SERVER_IP_{0}', matrix.server)] }}
-          server-port: 22
-          server-username: ${{ secrets.SERVER_USER }}
-          remote-dir: /var/www/html/githubaction
+          host: ${{ secrets[format('SERVER_IP_{0}', matrix.server)] }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          script: |
+            ls /var/www/html/githubaction
