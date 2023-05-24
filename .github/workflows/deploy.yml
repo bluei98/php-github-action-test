@@ -26,3 +26,4 @@ jobs:
           script: |
             whoami
             ls /var/www/html/githubaction
+            touch .deployed
